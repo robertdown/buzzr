@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Buzzr</title>
+	<script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script>
+		var socket = io();
+		socket.on('connect', function(){socket.emit('q.get');});
+		socket.on('question', function(res){initQ(res)});
+		function initQ(q) {
+			$('#q').text(q.question);
+			$('#a').text('');
+			$.each(q.possibilities, function(i,v) {
+				var ans = $('<div>').text(v)
+				$('#a').append(ans);
+			});
+		}
+	</script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  </head>
+  <body>
+  	<div class="container-fluid">
+  		<div class="row">
+  			<div class="col-md-8 col-md-offset-2 text-center"><h1 id="q"></h1></div>
+  		</div>
+  	</div>
+	  <div id="a"></div>
+  </body>
+</html>

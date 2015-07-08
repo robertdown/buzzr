@@ -1,0 +1,25 @@
+{
+  "name": "buzzr",
+  "version": "0.0.1",
+  "description": "Node based quiz app",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.13.1",
+    "socket.io": "^1.3.5",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robertdown/buzzr.git"
+  },
+  "author": "Robert Down <robertdown@live.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robertdown/buzzr/issues"
+  },
+  "homepage": "https://github.com/robertdown/buzzr#readme"
+}

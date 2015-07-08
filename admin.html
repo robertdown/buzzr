@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Buzzr Admin</title>
+    <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+        var socket = io();
+        socket.on('connect', function(){socket.emit('q.list');});
+        socket.on('list', function(res){initQ(res)});
+        function initQ(q) {
+            $('#question_list').text('');
+            $.each(q, function(i,v){
+                var qlink = $('<a href="#">').text(v.question).data('qid', i);
+                var question = $('<li>').append(qlink);
+                $('ul#question_list').append(question);
+            });
+        }
+        $(document).ready(function(){
+            $("ul#question_list").on('click', 'a', function(){
+                socket.emit('q.set', $(this).data('qid'));
+            });
+        });
+    </script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  </head>
+  <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <ul id="question_list"></ul>
+            </div>
+        </div>
+    </div>
+      <h1 id="q"></h1>
+      <div id="a"></div>
+  </body>
+</html>
